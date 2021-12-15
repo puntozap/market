@@ -42,6 +42,8 @@ php artisan voyager:admin your@email.com --create
 - aparece para agregar tu nombre de usuario, y agregar tu contraseña, luego la confirmas y listo. Ha sido todo instalado
 - ahora ejecutas el comando de
 ```
+php artisan key:generate
 php artisan serve
 ```
 - y para acceder a la pagina ingresar http://localhost:8000/admin y acceder con el correo y contraseña que acabas de crear por consola
+- debe abrir una pantalla de user y password
