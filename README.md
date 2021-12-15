@@ -39,3 +39,9 @@ ATENCION: SI SALE UN ERROR, VOLVER A EJECUTAR EL COMANDO.
 ```
 php artisan voyager:admin your@email.com --create
 ```
+- aparece para agregar tu nombre de usuario, y agregar tu contraseña, luego la confirmas y listo. Ha sido todo instalado
+- ahora ejecutas el comando de
+```
+php artisan serve
+```
+- y para acceder al 
