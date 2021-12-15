@@ -30,4 +30,12 @@ DB_DATABASE=homestead
 DB_USERNAME=homestead
 DB_PASSWORD=secret
 ```
-- 
+- a continuacion, vamos a ejecutar las migraciones del proyecto, segun la instalacion de voyager, de la siguiente manera:
+```
+php artisan voyager:install
+```
+ATENCION: SI SALE UN ERROR, VOLVER A EJECUTAR EL COMANDO.
+- ahora vamos a crear un usuario administrador, donde dice "your@email.com" sustituirlo por un correo que reconozcas. a continuacion, ejecuta el siguiente comando:
+```
+php artisan voyager:admin your@email.com --create
+```
