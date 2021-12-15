@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- Styles -->
         <style>
             html, body {
@@ -61,6 +61,9 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .card-img-top{
+                height: 400px;
+            }
         </style>
     </head>
     <body>
@@ -68,7 +71,8 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Hi {{ \Auth::user()->name }}</a>
+                        @if(\Auth::user()->role_id==1)<a href="{{ url('/admin') }}">Go to the admin</a>@endif
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -81,18 +85,32 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Market, select and buy a product
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="row">
+                    @forelse ($Product as $product )
+
+                            <div class="col-md-4">
+                                <form method="POST" action="/save-product-client">
+                                    {{ csrf_field() }}
+                                    <div class="card" style="he: 18rem;">
+                                            <img class="card-img-top" src="{{ url("/") }}/storage/{{ $product->image }}" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $product->name }}</h5>
+                                                <p class="card-text">$ {{ $product->price }}</p>
+                                                <p><input type="number" name="quantity" class="form-control" placeholder="add Quantity: 5" value="1"></p>
+                                                <button class="btn btn-success">Buy</button>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                </form>
+                            </div>
+                        @empty
+                        <div class="col-md-4">
+                            <h1>No Product. Wait to the admin for to create new products</h1>
+                        </div>
+                        @endforelse
                 </div>
             </div>
         </div>

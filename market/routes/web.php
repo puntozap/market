@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
+}); */
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+    Route::post('/search-and-create-invoice', 'PurchasesController@searchAndCreateInvoice');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@Marketplace');
+Route::post('/save-product-client', 'HomeController@saveProductClient');
