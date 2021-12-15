@@ -44,4 +44,4 @@ php artisan voyager:admin your@email.com --create
 ```
 php artisan serve
 ```
-- y para acceder al 
+- y para acceder a la pagina ingresar http://localhost:8000/admin y acceder con el correo y contraseña que acabas de crear por consola
